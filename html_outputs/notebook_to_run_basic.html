@@ -1,0 +1,285 @@
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Generate-some-data">Generate some data<a class="anchor-link" href="#Generate-some-data">&#182;</a></h2><p>First we'll generate some data that we'll use to visualize below.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1337</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="See-some-outputs">See some outputs<a class="anchor-link" href="#See-some-outputs">&#182;</a></h2><p>First we'll look at HTML dataframe output</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.703187</td>
+      <td>-0.490282</td>
+      <td>-0.321814</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-1.755079</td>
+      <td>0.206664</td>
+      <td>-2.011265</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.557251</td>
+      <td>0.337217</td>
+      <td>1.548836</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.370737</td>
+      <td>1.425291</td>
+      <td>-0.279464</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.559628</td>
+      <td>1.186383</td>
+      <td>1.698519</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now some simple matplotlib plots</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f2b2249ebb0&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally some fancier output
+note that HTML viz output can be tricky to turn into HTML
+I think because getting the JS dependencies loaded is unreliable</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">mark_point</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="s2">&quot;c&quot;</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+<div id="altair-viz-42fed61c7f5a416c9aeeb37d97630904"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    const outputDiv = document.getElementById("altair-viz-42fed61c7f5a416c9aeeb37d97630904");
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.0.2?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-29ab6bb74279d57983906dcaaf52b353"}, "mark": "point", "encoding": {"size": {"type": "quantitative", "field": "c"}, "x": {"type": "quantitative", "field": "a"}, "y": {"type": "quantitative", "field": "b"}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.0.2.json", "datasets": {"data-29ab6bb74279d57983906dcaaf52b353": [{"a": -0.7031873098624105, "b": -0.49028236278771464, "c": -0.3218143296501526}, {"a": -1.7550787171239868, "b": 0.20666447021383047, "c": -2.011264572814634}, {"a": -0.5572507081239421, "b": 0.3372170084417056, "c": 1.5488359716694058}, {"a": -1.3707365582609627, "b": 1.4252913986629026, "c": -0.2794639098029346}, {"a": -0.559627906760132, "b": 1.186383367445606, "c": 1.6985189051376623}, {"a": -1.6912201576405048, "b": -0.6995228442321605, "c": 0.582962841937446}, {"a": 0.9782226298198076, "b": -1.2173721054718658, "c": -1.3293954484318342}, {"a": -0.001454742266428668, "b": -1.3146526837845254, "c": -0.37961174341756554}, {"a": 1.265210647376645, "b": 0.12066774406890175, "c": 0.14794177849860185}, {"a": -2.7537257920074936, "b": -0.3568963241881448, "c": 0.00771783656034255}, {"a": 1.4782771611306014, "b": -0.957614628561729, "c": 1.3290081066145112}, {"a": -0.9858496301914452, "b": 0.47155720186813443, "c": -0.008746529498673312}, {"a": 0.36701868900629514, "b": 1.1185547440864663, "c": -0.008389935119820476}, {"a": 0.46631537869506084, "b": 1.2632687003334995, "c": -0.9016546538618192}, {"a": -1.0288426927914085, "b": 0.5696784209487935, "c": 0.6416647796503595}, {"a": 0.2598119299882401, "b": 1.1931781372550891, "c": -1.0463003622367857}, {"a": 0.13988892063047142, "b": -1.7306558398878829, "c": -0.13062311615876684}, {"a": -1.3102600178374146, "b": -2.171312418365992, "c": -1.0661814063812203}, {"a": -0.03316184427704593, "b": 1.4663957475793472, "c": 0.8766430959089553}, {"a": 0.6699895801759875, "b": 0.6974495111160605, "c": -0.25278543386503105}, {"a": 0.5679871068690735, "b": 0.30438785754883474, "c": -1.0000295963013812}, {"a": -2.4564178268120704, "b": 0.25230702200569455, "c": 0.7631204238448489}, {"a": -1.5834546539063008, "b": 0.1980422815404921, "c": 0.08525222977484838}, {"a": 0.6405077502468317, "b": -0.7906581548664058, "c": 0.7711823952195227}, {"a": -1.9506777667257222, "b": -1.294010214921496, "c": -1.0735237659209356}, {"a": 0.030691091942390464, "b": 0.7741093450349587, "c": -0.8713963028878069}, {"a": 0.16634401412874214, "b": 0.635789777188396, "c": 1.081671973516432}, {"a": -0.2827736615893422, "b": 1.5547879409170322, "c": -0.8583081351779684}, {"a": -0.2796504317480983, "b": -0.08542343253654935, "c": -0.21959764653062847}, {"a": -2.173598873816621, "b": 0.9063324273788009, "c": 0.7503385751171591}, {"a": -0.5752597372915398, "b": -0.36895322428228167, "c": 0.7657482455755041}, {"a": -1.1006615868256642, "b": 0.7338296604406034, "c": -0.03157402215285636}, {"a": -1.2739418607470343, "b": 0.330358651195845, "c": -0.5425151791589167}, {"a": -1.0520285666194797, "b": -0.7757206526918475, "c": -0.12322816490315489}, {"a": -0.5369312710699576, "b": 0.1653734061807222, "c": 0.8998557207587011}, {"a": 1.2571959907558432, "b": 1.1540686067101389, "c": -0.6742258009892421}, {"a": 0.8832666713317444, "b": -1.8007409988365144, "c": 0.315524021290732}, {"a": -0.2989424331214215, "b": 0.9232667061538622, "c": -0.8646104231287141}, {"a": 0.9063238957912969, "b": 0.1436653653338619, "c": -0.4287840376303047}, {"a": 0.043633485845887915, "b": -1.1596301258930446, "c": -0.14458171636459552}, {"a": 1.0626972062745461, "b": 1.503481681260415, "c": 0.8904773090910271}, {"a": 0.11018472952624332, "b": -0.280878365152031, "c": 0.4708767786979145}, {"a": -0.12265481194605361, "b": 1.8097161228067284, "c": -0.21150403430909656}, {"a": -0.10491641792539555, "b": 0.5600092990119518, "c": -1.1794564037301838}, {"a": -0.4678037812617453, "b": -1.742413192457269, "c": -0.0037032240098971913}, {"a": -2.170067190083364, "b": 0.42451004910174395, "c": 0.14647863881476825}, {"a": 0.059274440711844824, "b": -0.4912539266891554, "c": -1.0171730821238119}, {"a": 0.4193071961998747, "b": -0.7713675081404653, "c": 1.4378865150780469}, {"a": 2.686767122992888, "b": 0.396732881726082, "c": 0.4769239605519288}, {"a": 0.8159016972464805, "b": -0.5030922177285254, "c": 0.14486419601472417}, {"a": 0.03915844904537185, "b": -0.6128359448670816, "c": 0.7008821077163936}, {"a": 0.9768648480137676, "b": -0.6309415224928188, "c": -0.8386027200679316}, {"a": -0.4392036626361821, "b": -1.3645267902345468, "c": -1.2723711422064257}, {"a": 0.8601908877225237, "b": 0.914860456796585, "c": -0.712860144830928}, {"a": 0.15607763668936364, "b": 1.1585562091387656, "c": -0.49821012496052935}, {"a": 1.6706910695408048, "b": 0.43176528013807924, "c": 0.426712047341392}, {"a": 0.9867459860375951, "b": 0.9776806028402802, "c": -1.0646682013429372}, {"a": 0.5388479400375095, "b": 0.8430825685885635, "c": 0.9007229056305692}, {"a": -0.8016773305286485, "b": 0.4871308124535103, "c": -0.3583995873288774}, {"a": 1.202976753010021, "b": 0.45869919719676394, "c": -1.119630815883547}, {"a": 0.3351303980556235, "b": -0.68690022046664, "c": 1.2068168153505552}, {"a": 1.9175210593909267, "b": 0.5421989560792254, "c": 0.722353554845553}, {"a": -0.17488135025127646, "b": -0.11599682391072194, "c": -1.9871268314958257}, {"a": 0.009982921154422253, "b": 0.07121491979349509, "c": -1.750041264082769}, {"a": 0.5544383768007635, "b": 0.2745458467246506, "c": 1.720705079412357}, {"a": -2.3942127640134743, "b": -0.438335834887173, "c": 1.2219812466894533}, {"a": 0.37437698790786034, "b": -1.3810042562110136, "c": -0.6766865526798402}, {"a": 0.40759191728976685, "b": 0.5936197708627151, "c": 0.7836184213324792}, {"a": 0.6730021133331473, "b": 0.4787814331545838, "c": 0.8390401156311827}, {"a": 0.8691237159058469, "b": 1.3463277348388478, "c": 1.3673476888584215}, {"a": 0.366827391789123, "b": 0.3600415681840596, "c": 0.6669450234452535}, {"a": -1.1453648316957603, "b": 0.4388914530350149, "c": -0.437844713211303}, {"a": -0.4656897764771673, "b": 0.03120330118293511, "c": -0.8195223120459204}, {"a": 0.7588538681327697, "b": 0.5180565310281622, "c": 0.42819690615840467}, {"a": 0.20813500786595626, "b": 1.2482648754982117, "c": 1.0425855854595634}, {"a": 0.7349767205139115, "b": -0.5932387904547273, "c": 1.5240641786379931}, {"a": 1.216460345032035, "b": 1.0583691675621811, "c": -0.5168908558731442}, {"a": 1.0808539099471925, "b": -1.3828403783429593, "c": 0.10645635191534848}, {"a": 0.274257861387587, "b": -1.637482797365614, "c": 0.994120958461753}, {"a": -1.3607070212341483, "b": -0.34612857182479767, "c": 1.56069434013267}, {"a": 0.6364084377582877, "b": -0.21365563167928872, "c": -0.5300287107636138}, {"a": -1.1473955214281615, "b": -1.331020345175365, "c": 0.8671129451504809}, {"a": 0.10177722240358548, "b": -0.5654217995788455, "c": 0.5448665493967713}, {"a": -0.5882167516066237, "b": -1.5302897487667384, "c": -1.0551008282559304}, {"a": 1.2310259051114596, "b": 1.49268411812202, "c": 1.095726930187904}, {"a": -0.8327542585964425, "b": 1.4211968363592418, "c": -0.5192583585933712}, {"a": -0.66858874283445, "b": 2.065874698943237, "c": 0.6739399810748338}, {"a": 0.17836787921249603, "b": 1.2095959584703142, "c": 2.0522805725436952}, {"a": 1.1729834035917897, "b": -0.29920925397489834, "c": 1.5449105972835584}, {"a": 0.5132883538886516, "b": -0.4703041733694422, "c": -0.31009708986219847}, {"a": -0.4280439348972683, "b": -1.407237887232027, "c": -0.7965903628109772}, {"a": -0.8856434893108032, "b": 2.1106337088932907, "c": 1.0703925335996451}, {"a": 1.3994529188982727, "b": 0.571403123013241, "c": 0.2754305320881706}, {"a": -0.19925300342756852, "b": -0.359019207259414, "c": 0.12660968200395628}, {"a": -1.6923342767808864, "b": 1.3371478004567898, "c": -1.107167693436488}, {"a": -0.5722479926065639, "b": 0.8971525284923286, "c": -1.281699749068049}, {"a": -1.8990241808524702, "b": -1.7826868026732061, "c": -0.282853143137324}, {"a": -0.4487578974476542, "b": 1.1492302743279166, "c": -0.9810864213288608}, {"a": -1.4348601372214884, "b": -0.7536267389335919, "c": 1.3750592334440004}, {"a": 0.0065116301759978144, "b": -0.5379011880554767, "c": 0.4936707096278447}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+ 
+
